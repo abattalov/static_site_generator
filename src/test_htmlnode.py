@@ -1,6 +1,6 @@
 import unittest
 
-from htmlnode import HTMLNode
+from htmlnode import HTMLNode, LeafNode
 
 class TestHtmlNode(unittest.TestCase):
     def test_props_to_html_method(self):
@@ -36,3 +36,7 @@ class TestHtmlNode(unittest.TestCase):
     
         with self.assertRaisesRegex(Exception, "NotImplementedError"):
             HTMLNode.to_html(node)
+
+    def test_leaf_to_html_p(self):
+        node = LeafNode("Hello, world!", "p")
+        self.assertEqual(node.to_html(), "<p>Hello, world!</p>")
