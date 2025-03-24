@@ -40,3 +40,23 @@ class TestHtmlNode(unittest.TestCase):
     def test_leaf_to_html_p(self):
         node = LeafNode("Hello, world!", "p")
         self.assertEqual(node.to_html(), "<p>Hello, world!</p>")
+
+    def test_leaf_to_html_a(self):
+        props = {
+            "href": "https://www.google.com",
+            "target": "_blank",
+        }
+        node = LeafNode("Hello, world!", "a", props)
+        self.assertEqual(node.to_html(), "<a href='https://www.google.com' target='_blank'>Hello, world!</a>")
+
+    def test_parent_to_html(self):
+       node = ParentNode(
+        "p",
+        [
+            LeafNode("b", "Bold text"),
+            LeafNode(None, "Normal text"),
+            LeafNode("i", "italic text"),
+            LeafNode(None, "Normal text"),
+        ],
+        node.to_html()
+    )
